@@ -1,33 +1,53 @@
 #!/bin/sh
 
-gitpd=$(pwd)
+printf "Chose 1 of the supported distros:\n1) Fedora (rpm)\n2) Arch (pacman)\n"
+read what_distro
+
+if [ ${what_distro} -eq 1 ]; then
+	instal="dnf install"
+	jetbrains="jetbrains-mono-fonts"
+	fontawesome="fontawesome-fonts"
+	firacode="fira-code-fonts"
+	noto_fonts="google-noto-fonts-common"
+	xinit="xorg-x11-xinit"
+	sudo dnf copr enable opuk/pamixer
+elif [ ${what_distro} -eq 2 ]; then
+	instal="pacman -S"
+	jetbrains="ttf-jetbrains-mono"
+	fontawesome="otf-font-awesome"
+	firacode="ttf-fira-code"
+	noto_fonts="noto-fonts"
+	xinit="xorg-xinit"
+fi
 
 # Important Utilities
-sudo pacman -S openssh dash xdg-user-dirs pulseaudio pamixer
+sudo ${install} openssh dash xdg-user-dirs pulseaudio pamixer zsh playerctl
 
 # fonts
-sudo pacman -S otf-fira-code otf-font-awesome noto-fonts
-
-# zsh
-sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting
+sudo ${install} ${jetbrains} ${fontawesome} ${firacode} ${noto_fonts}
 
 # Desktop
-sudo pacman -S xorg-server xorg-xinit xorg-xsetroot xwallpaper xlcip xsel \
-	pamixer imagemagick picom lxappearance-gtk3 scrot sxhkd i3lock
+sudo ${install} xorg-server ${xinit} xorg-xsetroot feh xlcip xsel \
+	imagemagick picom lxappearance-gtk3 flameshot sxhkd i3lock
 
 # Neovim/vim-plug
 curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Apps
-sudo pacman -S zathura zathura-pdf-poppler mpv firefox vifm cmus rofi neovim
+sudo ${install} zathura zathura-pdf-poppler mpv firefox nnn cmus rofi neovim sxiv
 sudo ln -s /usr/bin/rofi /usr/bin/dmenu
 
+# Defaults
+xdg-mime default org.pwmt.zathura.desktop application/pdf
+
 ## moving files to the right spots
-sudo /usr/bin/ln -sfT dash /usr/bin/sh
+if [ ${what_distro} -eq 2 ]; then
+	sudo /usr/bin/ln -sfT dash /usr/bin/sh
+	sudo mv dash.hook /usr/share/libalpm/hooks/bash-update.hook
+fi
 sudo mkdir -p /etc/X11/xorg.conf.d
-sudo mv "$gitpd"dash.hook /usr/share/libalpm/hooks/bash-update.hook
-sudo mv "$gitpd"/mouse_accel.conf /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
+sudo mv mouse_accel.conf /etc/X11/xorg.conf.d/50-mouse-acceleration.conf
 xdg-user-dirs-update
 sudo usermod -s /bin/zsh "$USER"
 
@@ -35,14 +55,3 @@ sudo usermod -s /bin/zsh "$USER"
 mkdir -p "$HOME"/Pictures/Screenshots
 mkdir -p "$HOME"/.local/github
 mkdir -p "$HOME"/.cache/zsh
-
-## Install dwm and st in tmp files so you can login and link it through ssh
-git_dir=/tmp/setup
-mkdir -p "$git_dir"
-git clone https://github.com/kas2020-commits/dwm.git "$git_dir"/dwm
-git clone https://github.com/kas2020-commits/st.git "$git_dir"/st
-cd "$git_dir"/dwm
-sudo make clean install
-cd "$git_dir"/st
-sudo make clean install
-cd "$gitpd"
