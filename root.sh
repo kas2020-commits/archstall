@@ -43,8 +43,8 @@ ${install} zathura zathura-pdf-poppler mpv firefox nnn cmus rofi neovim sxiv
 ln -s /usr/bin/rofi /usr/bin/dmenu
 
 ## directory setup
+[ -f /usr/bin/dash ] && /usr/bin/ln -sfT dash /usr/bin/sh
 if [ ${what_distro} -eq 2 ]; then
-	/usr/bin/ln -sfT dash /usr/bin/sh
 	mv dash.hook /usr/share/libalpm/hooks/bash-update.hook
 fi
 mkdir -p /etc/X11/xorg.conf.d
