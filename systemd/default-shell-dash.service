@@ -1,9 +1,0 @@
-[Unit]
-Description=resets default shell to dash
-
-[Service]
-Type=simple
-ExecStart=[ -f /usr/bin/dash ] && /usr/bin/ln -sfT dash /usr/bin/sh
-
-[Install]
-WantedBy=multi-user.target
