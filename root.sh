@@ -5,11 +5,14 @@ install_cmd="pacman -S --noconfirm"
 # utils
 ${install_cmd} openssh dash xdg-user-dirs pulseaudio pamixer zsh playerctl flameshot
 
+# latex compiler and most extensions needed for most people.
+${install_cmd} texlive-most
+
 # C/C++ development
 ${install_cmd} clang gcc
 
 # Computational development
-${install_cmd} octave python-pip
+${install_cmd} octave python-pip r
 
 # GNU/Stow is the util used for the dotfiles repo
 ${install_cmd} stow
@@ -19,10 +22,11 @@ ${install_cmd} ttf-jetbrains-mono otf-font-awesome ttf-fira-code noto-fonts \
 	ttf-inconsolata
 
 # Xorg
-${install_cmd} xorg-xinit xorg-server xorg-xsetroot
+${install_cmd} xorg-xinit xorg-server xorg-xsetroot xsel xclip
 
 # Editor + Common Tools
-${install_cmd} neovim xsel xclip zathura zathura-pdf-poppler
+${install_cmd} albert alacritty neovim zathura zathura-pdf-poppler \
+	fd fzf ripgrep
 
 # Window-Manager specific installs
 ${install_cmd} i3lock picom sxhkd nitrogen imagemagick

@@ -17,3 +17,12 @@ sudo usermod -s /bin/zsh "$USER"
 
 # Install the rust toolchain for macOS/Linux
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# List of useful python packages for data science. Uncomment those you wish to
+# install (Some of these are dependancies of others so some of these are
+# reduntnat but it is useful to know what you're installing):
+# pip install numpy
+# pip install matplotlib
+# pip install pandas
+# pip install mpmath
+# pip install sympy
