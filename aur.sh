@@ -1,3 +1,4 @@
+#!/bin/sh
 
 # Newest version of neovim
 git clone https://aur.archlinux.org/neovim-nightly.git &&
