@@ -14,6 +14,7 @@ mkdir -p "$HOME"/.cache/zsh
 ## refresh & configure utils
 xdg-user-dirs-update
 sudo usermod -s /bin/zsh "$USER"
+sudo usermod -aG sys network power video lp wheel "$USER"
 
 # Install the rust toolchain for macOS/Linux
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh

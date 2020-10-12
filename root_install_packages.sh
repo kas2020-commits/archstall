@@ -18,15 +18,19 @@ ${install_cmd} octave python-pip r
 ${install_cmd} stow
 
 # fonts
-${install_cmd} ttf-jetbrains-mono otf-font-awesome ttf-fira-code noto-fonts \
-	ttf-inconsolata
+${install_cmd} ttf-jetbrains-mono otf-font-awesome ttf-fira-code noto-fonts ttf-inconsolata
+
+# Laptop-based packages
+${install_cmd} light
 
 # Xorg
 ${install_cmd} xorg-xinit xorg-server xorg-xsetroot xsel xclip
 
 # Editor + Common Tools
-${install_cmd} albert alacritty neovim zathura zathura-pdf-poppler \
-	fd fzf ripgrep
+${install_cmd} albert alacritty vim zathura zathura-pdf-poppler
+
+# cmd line tools
+${install_cmd} fd fzf ripgrep
 
 # Window-Manager specific installs
 ${install_cmd} i3lock picom sxhkd nitrogen imagemagick
