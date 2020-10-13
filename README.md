@@ -5,7 +5,7 @@
 For a full install, you can just run the following, but **MAKE SURE YOU RUN THIS
 AS THE USER AND NOT AS ROOT!!**
 
-```bash
+```
 $ ./install
 ```
 
