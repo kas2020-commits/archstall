@@ -6,6 +6,8 @@ curl -fLo "$HOME"/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 
 # Default applications
 xdg-mime default org.pwmt.zathura.desktop application/pdf
+xdg-mime default imv.desktop image/png
+xdg-mime default imv.desktop image/jpg
 
 mkdir -p "$HOME"/Pictures/Screenshots
 mkdir -p "$HOME"/.local/github

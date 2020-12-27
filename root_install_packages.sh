@@ -2,8 +2,8 @@
 
 install_cmd="pacman -S --noconfirm"
 
-# latex compiler and most extensions needed for most people.
-${install_cmd} texlive-most
+# latex compiler, most extensions, plus a general pdf manipulator
+${install_cmd} texlive-most pdftk
 
 # C/C++ development
 ${install_cmd} clang gcc
@@ -27,4 +27,7 @@ ${install_cmd} fd fzf ripgrep
 ${install_cmd} rofi albert
 
 # Apps
-${install_cmd} mpv firefox nnn cmus sxiv transmission-gtk
+${install_cmd} mpv firefox nnn cmus sxiv transmission-gtk lxappearance-gtk3
+
+# Xmonad
+${install_cmd} xmonad xmonad-contrib xmonad-utils xmobar
