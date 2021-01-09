@@ -2,6 +2,7 @@
 
 install_cmd="pacman -S --noconfirm"
 ${install_cmd} openssh dash xdg-user-dirs pulseaudio zsh playerctl
+
 ${install_cmd} xorg-xinit xorg-server xorg-xsetroot xsel xclip light pamixer
 ${install_cmd} i3lock picom sxhkd nitrogen imagemagick
 

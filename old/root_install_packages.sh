@@ -28,6 +28,3 @@ ${install_cmd} rofi albert
 
 # Apps
 ${install_cmd} mpv firefox nnn cmus sxiv transmission-gtk lxappearance-gtk3
-
-# Xmonad
-${install_cmd} xmonad xmonad-contrib xmonad-utils xmobar
